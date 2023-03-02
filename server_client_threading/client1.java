@@ -22,16 +22,30 @@ public class client1 {
             Scanner sc = new Scanner(System.in);
             String message = sc.nextLine();
 
-            oos.writeObject(message);
+            oos.writeObject(count_Vowels(message));
 
 
             if (message.equals("exit")) break;
             String serverReply = (String) ois.readObject();
 
 
-            System.out.println("From Server: " + serverReply);
+            System.out.println("From Server: Vowel number is --> " + serverReply);
 
         }
         socket.close();
+    }
+    public static String count_Vowels(String str)
+    {
+        int count = 0;
+        for (int i = 0; i < str.length(); i++)
+        {
+            if (str.charAt(i) == 'a' || str.charAt(i) == 'e' || str.charAt(i) == 'i'
+                    || str.charAt(i) == 'o' || str.charAt(i) == 'u')
+            {
+                count++;
+            }
+        }
+
+        return String.valueOf(count);
     }
 }

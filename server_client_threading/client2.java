@@ -22,16 +22,36 @@ public class client2 {
             Scanner sc = new Scanner(System.in);
             String message = sc.nextLine();
 
-            oos.writeObject(message);
+            oos.writeObject(countWords(message));
 
 
             if (message.equals("exit")) break;
             String serverReply = (String) ois.readObject();
 
 
-            System.out.println("From Server: " + serverReply);
+            System.out.println("From Server: Article number is --> " + serverReply);
 
         }
         socket.close();
+    }
+    public static String countWords(String str) {
+        int aCount = 0;
+        int anCount = 0;
+        int theCount = 0;
+
+        // split the string into words
+        String[] words = str.split("\\s+");
+
+        // iterate over the words and count occurrences of "a", "an", and "the"
+        for (String word : words) {
+            if (word.equalsIgnoreCase("a")) {
+                aCount++;
+            } else if (word.equalsIgnoreCase("an")) {
+                anCount++;
+            } else if (word.equalsIgnoreCase("the")) {
+                theCount++;
+            }
+        }
+        return "\n'a' -> "+aCount+"\n'an' -> "+anCount+"\n'the' -> "+theCount;
     }
 }

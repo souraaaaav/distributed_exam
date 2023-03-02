@@ -45,9 +45,9 @@ class ServerThread implements Runnable {
                 if (message == null) break;
                 System.out.println("Message Received: " + message);
 
-                System.out.println("Received message from client1 " + clientSocket.getInetAddress() + ":" + clientSocket.getPort());
+                System.out.println("Received message from " + clientSocket.getInetAddress() + ":" + clientSocket.getPort());
 
-                oos.writeObject("Hi Client " + message.toUpperCase());
+                oos.writeObject(message.toUpperCase());
 
             }
 
